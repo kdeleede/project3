@@ -21,16 +21,16 @@
 module clock_dividers(
 	input clk_in,
 	input rst,
-	output reg clk_1hz,
-	output reg clk_2hz,
-	output reg clk_fast,
-	output reg clk_blink
+	output reg clk_1hz = 0,
+	output reg clk_2hz = 0,
+	output reg clk_fast = 0,
+	output reg clk_blink = 0
 );
 
-reg [31:0] count_1hz;
-reg [31:0] count_2hz;
-reg [31:0] count_fast;  // Currently: 200hz
-reg [31:0] count_blink; // greater than 1hz: 3hz
+reg [31:0] count_1hz = 0;
+reg [31:0] count_2hz = 0;
+reg [31:0] count_fast = 0;  // Currently: 200hz
+reg [31:0] count_blink = 0; // greater than 1hz: 3hz
 
 // 100MHz: 100 000 000
 

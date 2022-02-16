@@ -25,11 +25,13 @@ module counter(
 	 input sel,
 	 input clk,     // 1Hz clock
 	 input clk_adj, // 2Hz clock
-	 output wire sec_1s_out,
-	 output wire sec_10s_out,
-	 output wire min_1s_out,
-	 output wire min_10s_out
+	 output [3:0] sec_1s_out,
+	 output [3:0] sec_10s_out,
+	 output [3:0] min_1s_out,
+	 output [3:0] min_10s_out
 	 );
+	 
+	 reg clk_sel = 0;
 	 
 	 reg [3:0] sec_1s = 0;
 	 reg [3:0] sec_10s = 0;
@@ -39,10 +41,10 @@ module counter(
 	 
 	 //a clock that can be selected to be 1Hz or 2Hz
 	 
-	 reg clk_sel; // the selected clock
+	 //reg clk_sel; // the selected clock
 	 
 	 always @* begin
-		if (adj) begin
+		if (~adj) begin
 			clk_sel = clk;
 		end
 		else begin
@@ -92,7 +94,7 @@ module counter(
 				end
 				// normal increment: sec
 				else begin
-					min_1s <= sec_1s + 1;
+					min_1s <= min_1s + 1;
 				end
 			end
 		end
@@ -128,6 +130,11 @@ module counter(
 			end
 		end
 	 end
+	 
+assign sec_1s_out = sec_1s;
+assign sec_10s_out = sec_10s;
+assign min_1s_out = min_1s;
+assign min_10s_out = min_10s;
 	 
 
 endmodule

@@ -21,10 +21,8 @@
 module debouncer(
     input clk,
 	 input btn,
-	 output btn_out
+	 output reg btn_out = 0
 	 );
-	 
-reg btn_out = 0;
 
 reg[15:0] count;
 
